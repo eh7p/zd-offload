@@ -3,11 +3,13 @@
 
 {%- include head.html -%}
 
-<body class='h-full'>
+<body class='h-full flex flex-col'>
 
   {%- include nav.html -%}
 
+  <div class="grow">
   {{ content }}
+  </div>
 
   {%- include footer.html -%}
 

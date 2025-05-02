@@ -3,6 +3,7 @@
     >
       <div
         class="container px-4 mx-auto flex flex-wrap items-center justify-between"
+        x-data="{ navbarOpen: false }"
       >
         <div
           class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
@@ -16,14 +17,16 @@
           ><button
             class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
             type="button"
-            onclick="toggleNavbar('example-collapse-navbar')"
+            x-on:click="navbarOpen = !navbarOpen"
           >
             <i class="text-white fas fa-bars"></i>
           </button>
         </div>
         <div
-          class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
-          id="example-collapse-navbar"
+          class="lg:flex flex-grow items-center bg-white lg:bg-transparent ≈
+            lg:relative lg:top-0 lg:shadow-none
+            absolute top-[72px] right-0 shadow-md"
+          x-bind:class="navbarOpen ? '' : 'hidden'"
         >
           <ul class="flex flex-col lg:flex-row list-none mr-auto">
             <li class="flex items-center">
@@ -42,6 +45,22 @@
                   class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"
                 ></i>
                 Docs</a
+              >
+              <a
+                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                href="/pricing"
+                ><i
+                  class="lg:text-gray-300 text-gray-500 fas fa-money-bill text-lg leading-lg mr-2"
+                ></i>
+                Pricing</a
+              >
+              <a
+                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                href="/demo"
+                ><i
+                  class="lg:text-gray-300 text-gray-500 fas fa-desktop text-lg leading-lg mr-2"
+                ></i>
+                Demo</a
               >
             </li>
           </ul>
@@ -64,17 +83,18 @@
                   <i class="lg:text-yellow-300 text-yellow-500 fas fa-star text-sm leading-sm" ></i>
                   <i class="lg:text-yellow-300 text-yellow-500 fas fa-star text-sm leading-sm" ></i>
                 </div>
-                <span class="lg:hidden inline-block ml-2">Zendesk Marketplace</span></a
-              >
+              </a>
             </li>
             <li class="flex items-center">
-                <a
+              <a
                 href="https://zd-external-attachment-storage.eh7p.com/login"
+                target="_blank"
                 class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+                type="button"
                 style="transition: all 0.15s ease 0s;"
-                >
+              >
                 <i class="fas fa-arrow-alt-circle-right"></i> Sign Up
-                </a>
+            </a>
             </li>
           </ul>
         </div>
