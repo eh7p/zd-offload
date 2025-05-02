@@ -1,8 +1,7 @@
-title: Cookie
+title: Zendesk Attachment Storage Offload 
 description: > # this means to ignore newlines until "show_excerpts:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Store old attachments externally to Zendesk 90% cheaper.
+  Retain full access within Zendesk via the sidebar app. 
 baseurl: "/"
 url: https://cookie-demo.netlify.app # change this URL, this is needed for generating right sitemap
 
@@ -32,9 +31,6 @@ jekyll-minifier:
 
 soopr:
   publish_token: "" # sign up at https://www.soopr.co to get your publish token and personalize share and reaction options
-
-twitter:
-  card: summary_large_image
 
 exclude:
   - Gemfile
