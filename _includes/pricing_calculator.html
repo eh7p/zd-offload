@@ -1,0 +1,87 @@
+
+<section class="text-tertiary-700 font-sans">
+    <div x-data="{ mode: 'cloud', attachmentsStored: 100, attachmentStoredAdditional: 5, ourCost: '$45.00/month', zendeskCost: '$240.00/month', ourCostFuture: '$61.00/month' }"
+        x-init="$watch('attachmentsStored', value => {
+            if (mode === 'cloud') {
+                ourCost = `$${(30 + (value > 25 ? (value - 25) * 0.2 : 0)).toFixed(2)}/month`;
+                zendeskCost = `$${(60 * Math.ceil(value / 25)).toFixed(2)}/month`;
+            } else {
+                ourCost = `$${(60 + parseInt(value)).toFixed(2)}/month`;
+                ourCostFuture = `$${(60 + parseInt(attachmentStoredAdditional)).toFixed(2)}/month`;
+                zendeskCost = `$${(200 + parseInt(value)).toFixed(2)}/month, increasing by $${(attachmentStoredAdditional * 60 / 25).toFixed(2)}/month`;
+            }
+        })
+        $watch('mode', value => {
+            if (value === 'cloud') {
+                ourCost = `$${(30 + (attachmentsStored > 25 ? (attachmentsStored - 25) * 0.2 : 0)).toFixed(2)}/month`;
+                zendeskCost = `$${(60 * Math.ceil(attachmentsStored / 25)).toFixed(2)}/month`;
+            } else {
+                ourCost = `$${(60 + parseInt(attachmentsStored)).toFixed(2)}/month`;
+                ourCostFuture = `$${(60 + parseInt(attachmentStoredAdditional)).toFixed(2)}/month`;
+                zendeskCost = `$${(200 + parseInt(attachmentsStored)).toFixed(2)}/month, increasing by $${(attachmentStoredAdditional * 60 / 25).toFixed(2)}/month`;
+            }
+        })
+        $watch('attachmentStoredAdditional', value => {
+            if (mode === 'cloud') {
+                ourCost = `$${(30 + (attachmentsStored > 25 ? (attachmentsStored - 25) * 0.2 : 0)).toFixed(2)}/month`;
+                zendeskCost = `$${(60 * Math.ceil(attachmentsStored / 25)).toFixed(2)}/month`;
+            } else {
+                ourCost = `$${(60 + parseInt(attachmentsStored)).toFixed(2)}/month`;
+                ourCostFuture = `$${(60 + parseInt(value)).toFixed(2)}/month`;
+                zendeskCost = `$${(200 + parseInt(attachmentsStored)).toFixed(2)}/month, increasing by $${(attachmentStoredAdditional * 60 / 25).toFixed(2)}/month`;
+            }
+        })"
+        class="container flex flex-col items-center xs:px-5 mx-auto">
+        <div class="flex flex-col w-full mb-8 text-left">
+            <div class="w-full mx-auto lg:max-w-2xl bg-tertiary-100 rounded-lg border border-tertiary-300 shadow p-2 md:p-4 lg:p-8">
+                <h1 class="font-heading ml-2 mx-auto text-2xl font-semibold leading-10 text-tertiary-800 lg:text-3xl title-font">Pricing Calculator</h1>
+                <div class="flex space-x-4 mb-2 justify-center pb-2">
+                    <button x-on:click="mode = 'cloud'" x-bind:class="mode == 'cloud' ? 'bg-primary-600 shadow-md font-semibold' : 'hover:bg-primary-600'" class="px-4 py-2 bg-primary-500 text-white rounded">Cloud</button>
+                    <button x-on:click="mode = 'hybrid'" x-bind:class="mode == 'hybrid' ? 'bg-primary-600 shadow-md font-semibold' : 'hover:bg-primary-600'" class="px-4 py-2 bg-primary-500 text-white rounded">Hybrid</button>
+                </div>
+                <div class="flex grid grid-cols-4 gap-x-4 pb-4 mb-4 border-b items-center" x-show="mode == 'cloud'">
+                    <span class="text-gray-700 col-span-4 sm:col-span-2 sm:text-right">Attachments Stored:</span>
+                    <input type="number" x-model="attachmentsStored" class="col-span-3 sm:col-span-1 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <span class="text-gray-700">GB</span>
+                </div>
+                <div class="pb-4 mb-4 border-b" x-show="mode == 'hybrid'">
+                    <div class="grid grid-cols-4 gap-x-4 items-center mb-2">
+                        <span class="text-gray-700 col-span-4 sm:col-span-2 sm:text-right">Initial Offload:</span>
+                        <input type="number" x-model="attachmentsStored" class="col-span-3 sm:col-span-1 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <span class="text-gray-700">GB</span>
+                    </div>
+                    <div class="grid grid-cols-4 gap-x-4 items-center">
+                        <span class="text-gray-700 col-span-4 sm:col-span-2 sm:text-right">Future Monthly Offload:</span>
+                        <input type="number" x-model="attachmentStoredAdditional" class="col-span-3 sm:col-span-1 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <span class="text-gray-700">GB</span>
+                    </div>
+                </div>
+                <div class="space-y-4 ml-1 mb-1">
+                    <div class="flex flex-col sm:block" x-show="mode == 'cloud'">
+                        <span class="text-gray-700 font-medium">Our cost:</span>
+                        <span class="ml-1 text-gray-800 font-bold" x-text="ourCost">$45/month</span>
+                    </div>
+                    <div x-show="mode == 'hybrid'">
+                        <div class="flex flex-col sm:block">
+                            <span class="text-gray-700 font-medium">Our cost (month 1):</span>
+                            <span class="ml-1 text-gray-800 font-bold" x-text="ourCost">$160/month</span>
+                        </div>
+                        <div class="flex flex-col sm:block">
+                            <span class="text-gray-700 font-medium">Our cost (further months):</span>
+                            <span class="ml-1 text-gray-800 font-bold" x-text="ourCostFuture">$65/month</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:block">
+                        <span class="text-gray-500 font-medium">Zendesk cost (estimate):</span>
+                        <span class="ml-1 text-gray-500 font-medium" x-text="zendeskCost">$200/month</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="mt-2 text-sm text-tertiary-600 md:mx-auto w-full text-center">
+                All prices quoted in USD and are for estimation purposes only. 
+            </p>
+            
+        </div>
+    </div>
+</section>
