@@ -18,6 +18,13 @@ plugins:
 
 css_dir: "assets/css" # defaults to "css"
 
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      image: /assets/img/logo.png
+
 highlighter: rouge
 
 collections:
