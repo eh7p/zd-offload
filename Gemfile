@@ -7,6 +7,7 @@ group :jekyll_plugins do
   gem "jekyll-postcss-v2"
   gem "jekyll-minifier"
   gem 'jekyll-sitemap'
+  gem 'jekyll-seo-tag'
 end
 gem "rouge"
 

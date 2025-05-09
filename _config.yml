@@ -1,4 +1,7 @@
 title: Zendesk Attachment Storage Offload 
+tagline: "Offload Zendesk attachments into external storage, saving up to 90% on costs."
+author: "eh7p"
+logo: "/assets/images/logo.png"
 description: > # this means to ignore newlines until "show_excerpts:"
   Store old attachments externally to Zendesk 90% cheaper.
   Retain full access within Zendesk via the sidebar app. 
@@ -7,9 +10,11 @@ url: https://eh7p.com/zd-offload # change this URL, this is needed for generatin
 
 permalink: "/blog/:title/"
 
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
   - jekyll-minifier
 
 css_dir: "assets/css" # defaults to "css"
