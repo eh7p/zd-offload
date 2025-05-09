@@ -15,7 +15,6 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-minifier
 
 css_dir: "assets/css" # defaults to "css"
 
@@ -28,10 +27,6 @@ collections:
   pages:
     output: true
     permalink: "/:title"
-
-jekyll-minifier:
-  uglifier_args:
-    harmony: true
 
 exclude:
   - Gemfile
