@@ -2,7 +2,7 @@ title: Zendesk Attachment Storage Offload
 description: > # this means to ignore newlines until "show_excerpts:"
   Store old attachments externally to Zendesk 90% cheaper.
   Retain full access within Zendesk via the sidebar app. 
-baseurl: "/"
+baseurl: ""
 url: https://localhost # change this URL, this is needed for generating right sitemap
 
 permalink: "/blog/:title/"
