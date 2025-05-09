@@ -8,4 +8,4 @@ The solution moves your old ticket attachments to external storage, while you re
 
 Check out the docs site at [eh7p.com/zd-offload-docs](https://eh7p.com/zd-offload-docs), featuring tutorials, guides, and commonly asked questions.
 
-Get started today, or [get in touch]({% contact-us %}) to discuss any needs or questions!
+Get started today, or [get in touch]({{ site.baseurl }}contact-us) to discuss any needs or questions!
