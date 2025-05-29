@@ -1,5 +1,6 @@
 ---
 layout: post
+description: 'Stop storing excess attachments in Zendesk and offload them today with us'
 ---
 
 Are you storing large files and attachments from your customers in Zendesk? There's now a way to offload these files externally, so you can save $$$ on your Zendesk storage costs.
