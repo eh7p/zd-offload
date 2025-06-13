@@ -24,6 +24,7 @@ defaults:
       image: /assets/img/logo.png
 
 highlighter: rouge
+google_analytics: G-PPVJ20YKN8
 
 collections:
   posts:
