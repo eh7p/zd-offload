@@ -44,6 +44,16 @@
             </li>
           </nav>
         </div>
+        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+          <h2 class="title-font font-medium text-white tracking-widest text-sm mb-3">RECENT BLOGS</h2>
+          <nav class="list-none">
+          {% for post in site.posts limit:3 %}
+            <li class="mt-3">
+              <a class="text-gray-400 hover:text-white" target="_blank" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+            </li>
+          {% endfor %}
+          </nav>
+        </div>
       </div>
     </div>
 
