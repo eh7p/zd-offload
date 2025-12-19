@@ -1,0 +1,30 @@
+
+<section class="text-tertiary-700 font-sans px-5">
+    <div x-data="{ attachmentsStored: 280, ourCost: '$81.00/month', zendeskCost: '$720.00/month' }"
+        x-init="$watch('attachmentsStored', value => {
+            ourCost = `$${(30 + (value > 25 ? (value - 25) * 0.2 : 0)).toFixed(2)}/month`;
+            zendeskCost = `$${(60 * Math.ceil(value / 25)).toFixed(2)}/month`;
+        })"
+        class="container grid grid-cols-1 sm:grid-cols-2 sm:gap-x-4 gap-y-2 sm:gap-y-0 items-center mx-auto w-full lg:max-w-2xl bg-tertiary-100 rounded-lg border border-tertiary-300 shadow p-2 md:p-4 lg:p-6">
+        <div class="grid grid-cols-12 gap-x-2 sm:border-r sm:border-b-0 border-b pb-4 sm:pb-auto">
+            <div class="col-span-10 flex flex-col">
+                <span class="text-gray-700 pb-2 mr-8 text-end">Attachments Stored</span>
+                <input type="number" x-model="attachmentsStored" class="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+            <span class="text-gray-700 mt-auto mb-1.5">GB</span>
+        </div>
+        <div class="my-auto grid grid-cols-2 sm:block">
+            <div class="flex flex-col sm:block mb-2">
+                <span class="text-gray-700 font-medium">Our cost:</span>
+                <span class="ml-1 text-gray-800 font-bold" x-text="ourCost">$45/month</span>
+            </div>
+            <div class="flex flex-col sm:block">
+                <span class="text-gray-500 font-medium">Zendesk cost (est):</span>
+                <span class="ml-1 text-gray-500 font-medium" x-text="zendeskCost">$200/month</span>
+            </div>
+        </div>
+        <div class="col-span-1 sm:col-span-2 text-center sm:mt-2" x-show="attachmentsStored > 450">
+            <p class="text-xs text-gray-700 text-opacity-60">Bulk discount available over 500GB</p>
+        </div>
+    </div>
+</section>
