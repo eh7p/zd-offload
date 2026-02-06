@@ -2,33 +2,39 @@
 <section class="text-tertiary-700 font-sans">
     <div x-data="{ mode: 'cloud', attachmentsStored: 100, attachmentStoredAdditional: 5, ourCost: '$45.00/month', zendeskCost: '$240.00/month', ourCostFuture: '$61.00/month' }"
         x-init="$watch('attachmentsStored', value => {
+            const attachmentsStoredSafe = value === '' || value == null ? 0 : parseInt(value);
+            const attachmentStoredAdditionalSafe = attachmentStoredAdditional === '' || attachmentStoredAdditional == null ? 0 : parseInt(attachmentStoredAdditional);
             if (mode === 'cloud') {
-                ourCost = `$${(30 + (value > 25 ? (value - 25) * 0.2 : 0)).toFixed(2)}/month`;
-                zendeskCost = `$${(60 * Math.ceil(value / 25)).toFixed(2)}/month`;
+                ourCost = `$${(30 + (attachmentsStoredSafe > 25 ? (attachmentsStoredSafe - 25) * 0.2 : 0)).toFixed(2)}/month`;
+                zendeskCost = `$${(60 * Math.ceil(attachmentsStoredSafe / 25)).toFixed(2)}/month`;
             } else {
-                ourCost = `$${(60 + parseInt(value)).toFixed(2)}/month`;
-                ourCostFuture = `$${(60 + parseInt(attachmentStoredAdditional)).toFixed(2)}/month`;
-                zendeskCost = `$${(200 + parseInt(value)).toFixed(2)}/month, increasing by $${(attachmentStoredAdditional * 60 / 25).toFixed(2)}/month`;
+                ourCost = `$${(60 + v).toFixed(2)}/month`;
+                ourCostFuture = `$${(60 + parseInt(attachmentStoredAdditionalSafe)).toFixed(2)}/month`;
+                zendeskCost = `$${(60 * Math.ceil(attachmentsStoredSafe / 25)).toFixed(2)}/month, increasing by $${(attachmentStoredAdditional * 60 / 25).toFixed(2)}/month`;
             }
         })
         $watch('mode', value => {
+            const attachmentsStoredSafe = attachmentsStored === '' || attachmentsStored == null ? 0 : parseInt(attachmentsStored);
+            const attachmentStoredAdditionalSafe = attachmentStoredAdditional === '' || attachmentStoredAdditional == null ? 0 : parseInt(attachmentStoredAdditional);
             if (value === 'cloud') {
-                ourCost = `$${(30 + (attachmentsStored > 25 ? (attachmentsStored - 25) * 0.2 : 0)).toFixed(2)}/month`;
-                zendeskCost = `$${(60 * Math.ceil(attachmentsStored / 25)).toFixed(2)}/month`;
+                ourCost = `$${(30 + (attachmentsStoredSafe > 25 ? (attachmentsStoredSafe - 25) * 0.2 : 0)).toFixed(2)}/month`;
+                zendeskCost = `$${(60 * Math.ceil(attachmentsStoredSafe / 25)).toFixed(2)}/month`;
             } else {
-                ourCost = `$${(60 + parseInt(attachmentsStored)).toFixed(2)}/month`;
-                ourCostFuture = `$${(60 + parseInt(attachmentStoredAdditional)).toFixed(2)}/month`;
-                zendeskCost = `$${(200 + parseInt(attachmentsStored)).toFixed(2)}/month, increasing by $${(attachmentStoredAdditional * 60 / 25).toFixed(2)}/month`;
+                ourCost = `$${(60 + parseInt(attachmentsStoredSafe)).toFixed(2)}/month`;
+                ourCostFuture = `$${(60 + parseInt(attachmentStoredAdditionalSafe)).toFixed(2)}/month`;
+                zendeskCost = `$${(60 * Math.ceil(attachmentsStoredSafe / 25)).toFixed(2)}/month, increasing by $${(attachmentStoredAdditional * 60 / 25).toFixed(2)}/month`;
             }
         })
         $watch('attachmentStoredAdditional', value => {
+            const attachmentsStoredSafe = attachmentsStored === '' || attachmentsStored == null ? 0 : parseInt(attachmentsStored);
+            const attachmentStoredAdditionalSafe = value === '' || value == null ? 0 : parseInt(value);
             if (mode === 'cloud') {
-                ourCost = `$${(30 + (attachmentsStored > 25 ? (attachmentsStored - 25) * 0.2 : 0)).toFixed(2)}/month`;
-                zendeskCost = `$${(60 * Math.ceil(attachmentsStored / 25)).toFixed(2)}/month`;
+                ourCost = `$${(30 + (attachmentsStoredSafe > 25 ? (attachmentsStoredSafe - 25) * 0.2 : 0)).toFixed(2)}/month`;
+                zendeskCost = `$${(60 * Math.ceil(attachmentsStoredSafe / 25)).toFixed(2)}/month`;
             } else {
-                ourCost = `$${(60 + parseInt(attachmentsStored)).toFixed(2)}/month`;
-                ourCostFuture = `$${(60 + parseInt(value)).toFixed(2)}/month`;
-                zendeskCost = `$${(200 + parseInt(attachmentsStored)).toFixed(2)}/month, increasing by $${(attachmentStoredAdditional * 60 / 25).toFixed(2)}/month`;
+                ourCost = `$${(60 + parseInt(attachmentsStoredSafe)).toFixed(2)}/month`;
+                ourCostFuture = `$${(60 + parseInt(attachmentStoredAdditionalSafe)).toFixed(2)}/month`;
+                zendeskCost = `$${(60 * Math.ceil(attachmentsStoredSafe / 25)).toFixed(2)}/month, increasing by $${(attachmentStoredAdditional * 60 / 25).toFixed(2)}/month`;
             }
         })"
         class="container flex flex-col items-center xs:px-5 mx-auto">
