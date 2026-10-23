@@ -8,7 +8,7 @@
                 ourCost = `$${(30 + (attachmentsStoredSafe > 25 ? (attachmentsStoredSafe - 25) * 0.2 : 0)).toFixed(2)}/month`;
                 zendeskCost = `$${(60 * Math.ceil(attachmentsStoredSafe / 25)).toFixed(2)}/month`;
             } else {
-                ourCost = `$${(60 + v).toFixed(2)}/month`;
+                ourCost = `$${(60 + attachmentsStoredSafe).toFixed(2)}/month`;
                 ourCostFuture = `$${(60 + parseInt(attachmentStoredAdditionalSafe)).toFixed(2)}/month`;
                 zendeskCost = `$${(60 * Math.ceil(attachmentsStoredSafe / 25)).toFixed(2)}/month, increasing by $${(attachmentStoredAdditional * 60 / 25).toFixed(2)}/month`;
             }
